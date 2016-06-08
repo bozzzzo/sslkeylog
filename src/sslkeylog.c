@@ -8,6 +8,10 @@
  * Usage:
  *  cc sslkeylog.c -shared -o libsslkeylog.so -fPIC -ldl
  *  SSLKEYLOGFILE=premaster.txt LD_PRELOAD=./libsslkeylog.so openssl ...
+ *
+ * Usage OS/X with brew:
+ *  cc sslkeylog.c -dynamiclib -I$(brew --prefix openssl)/include -L$(brew --prefix openssl)/lib -lssl
+ *  SSLKEYLOGFILE=premaster.txt DYLD_FORCE_FLAT_NAMESPACE=1 DYLD_INSERT_LIBRARIES=a.out /usr/local/opt/openssl/bin/openssl s_client -connect localhost:8080
  */
 #define _GNU_SOURCE /* for RTLD_NEXT */
 #include <dlfcn.h>
